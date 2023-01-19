@@ -20,11 +20,12 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 1000px;
+    width: 75%;
 }
 
 .todoList>h2 {
     font-size: 4em;
+    letter-spacing: .15em;
     color: rgba(19, 92, 224, 1);
 }
 
@@ -40,6 +41,7 @@ body {
     text-align: center;
     border: none;
     outline: none;
+    letter-spacing: .05em;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .6);
     transition: all .1s;
 }
@@ -53,17 +55,17 @@ body {
 
 .events {
     display: flex;
-    width: 1000px;
+    width: 100%;
     margin-top: 20px;
-    background-color: pink;
-    justify-content: space-around;
+    align-items: center;
+    /* background-color: pink; */
+    justify-content: center;
 }
 
 .events>div {
     align-self: flex-start;
-    width: 448px;
+    width: 45%;
     height: auto;
-    /* background-color: #fff; */
 }
 
 .events>div h3 {
@@ -72,14 +74,98 @@ body {
 }
 
 .events .items {
+    width: 90%;
+    border: 1px solid transparent;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
 }
 
+.items div {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 48px;
+    margin: 0 auto;
+    /* background-color: cadetblue; */
+    margin-top: 15px;
+    margin-bottom: 15px;
+    position: relative;
+    transition: all .3s;
+}
 
+.items div:hover {
+    transform: scale(1.05);
+}
 
+.items div button {
+    display: inline-block;
+    position: absolute;
+    left: 3%;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
 
-.study::after {
-    content: "📘";
+.items div button:hover {
+    cursor: pointer;
+}
+
+.items div p {
+    display: inline-block;
+    width: 100%;
+    line-height: 48px;
+    padding-left: calc(4% + 30px);
+    border-radius: 24px;
+    background-color: #fff;
+}
+
+.items .study p {
+    background-color: #b5f291;
+    box-shadow: 0px 2px 4px #a1d781;
+}
+
+.items .life p {
+    background-color: #FEF9D7;
+    box-shadow: 0px 2px 4px #e2dec0;
+}
+
+.items .work p {
+    background-color: #d1eeff;
+    box-shadow: 0px 2px 4px #b9d3e2;
+}
+
+.items .study::after {
+    content: "📚";
+    position: absolute;
+    right: 4%;
+}
+
+.items .life::after {
+    content: "🏠";
+    position: absolute;
+    right: 4%;
+}
+
+.items .work::after {
+    content: "📄";
+    position: absolute;
+    right: 4%;
+}
+
+.items .finish {
+    text-decoration: line-through;
+    color: #9c9c9c;
+}
+
+.items .finish p {
+    background-color: #dbdbdb;
+    box-shadow: 0 2px 4px #dbdbdb;
+}
+
+.items .finish button {
+    background-color: #c3cfe2;
 }
