@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: “Arial”, “Microsoft YaHei”, “黑体”, “宋体”, sans-serif;
 }
 
 body {
@@ -11,17 +12,74 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: pink;
+    background-color: #f6f6f6;
 }
 
-.mask {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+.todoList {
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, .6);
+    flex-direction: column;
+    width: 1000px;
+}
+
+.todoList>h2 {
+    font-size: 4em;
+    color: rgba(19, 92, 224, 1);
+}
+
+.todoList>input {
+    display: block;
+    width: 400px;
+    height: 40px;
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 20px;
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .6);
+    transition: all .1s;
+}
+
+.todoList>input:focus,
+.todoList>input:hover {
+    border: 2px solid transparent;
+    border-color: rgba(234, 76, 137, 0.4);
+    box-shadow: 0 0 0 4px rgb(234 76 137 / 10%);
+}
+
+.events {
+    display: flex;
+    width: 1000px;
+    margin-top: 20px;
+    background-color: pink;
+    justify-content: space-around;
+}
+
+.events>div {
+    align-self: flex-start;
+    width: 448px;
+    height: auto;
+    /* background-color: #fff; */
+}
+
+.events>div h3 {
+    font-size: 24px;
+    color: rgba(19, 92, 224, 1);
+}
+
+.events .items {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+
+
+
+.study::after {
+    content: "📘";
 }
