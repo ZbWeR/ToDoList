@@ -11,19 +11,45 @@
 </head>
 
 <body>
-    <button onclick="show()">🔥</button>
-    <div class="mask">
-        <div class="funAdd">
-            <input type="text" placeholder="请输入待办">
-            <label for="cs">短期</label><input type="checkbox" value="short" id="cs">
-            <label for="cl">长期</label><input type="checkbox" value="long" id="cl">
-            <button onclick="hide()">💧</button>
+    <div class="todoList">
+        <h2>ToDo</h2>
+        <input type="text" placeholder="Add a Event...">
+        <div class="events">
+            <div class="short">
+                <h3>短期任务</h3>
+                <div class="items">
+                    <div class="study">
+                        <button></button>
+                        <p>正则表达式学习</p>
+                    </div>
+                    <div class="study">
+                        <button></button>
+                        <p>正则表达式学习</p>
+                    </div>
+                    <div class="study">
+                        <button></button>
+                        <p>正则表达式学习</p>
+                    </div>
+                </div>
+            </div>
+            <div class="long">
+                <h3>长期任务</h3>
+                <div class="items">
+                    <div class="study">
+                        <button></button>
+                        <p>JQuery修改样式</p>
+                    </div>
+                    <div class="study">
+                        <button></button>
+                        <p>原生js实现拖拽排序</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- <input type="text"> -->
-    <!-- <button onclick="tmp()">Submit</button> -->
+
 
 </body>
-<script src="tmp.js"></script>
+<!-- <script src="tmp.js"></script> -->
 
 </html>
