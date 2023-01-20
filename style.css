@@ -80,7 +80,10 @@ body {
     border: 1px solid transparent;
     background-color: #fff;
     border-radius: 15px;
+    padding: 10px 0 0 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+    display: flex;
+    flex-direction: column;
 }
 
 .items div {
@@ -90,7 +93,6 @@ body {
     height: 48px;
     margin: 0 auto;
     /* background-color: cadetblue; */
-    margin-top: 15px;
     margin-bottom: 15px;
     position: relative;
     transition: all .3s;
@@ -166,6 +168,11 @@ body {
 .items .finish {
     text-decoration: line-through;
     color: #9c9c9c;
+    order: 100;
+}
+
+.items .finish::after {
+    content: "";
 }
 
 .items .finish p {
