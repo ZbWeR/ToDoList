@@ -55,6 +55,7 @@ body {
 
 .events {
     display: flex;
+    /* flex-direction: column; */
     width: 100%;
     margin-top: 20px;
     align-items: center;
@@ -65,6 +66,7 @@ body {
 .events>div {
     align-self: flex-start;
     width: 45%;
+    /* width: 80%; */
     height: auto;
 }
 
@@ -121,6 +123,10 @@ body {
     padding-left: calc(4% + 30px);
     border-radius: 24px;
     background-color: #fff;
+    /* 单行溢出省略 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .items .study p {
@@ -140,6 +146,7 @@ body {
 
 .items .study::after {
     content: "📚";
+    /* font-size: 20px; */
     position: absolute;
     right: 4%;
 }
