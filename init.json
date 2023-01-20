@@ -1,0 +1,26 @@
+[
+    {
+        "Class": "life",
+        "content": "欢迎来到ToDoList",
+        "endTime": "none",
+        "startTime": -1
+    },
+    {
+        "Class": "finish",
+        "content": "finished!",
+        "endTime": "none",
+        "startTime": -2
+    },
+    {
+        "Class": "study",
+        "content": "功能测试",
+        "endTime": "none",
+        "startTime": -3
+    },
+    {
+        "Class": "work",
+        "content": "hello!",
+        "endTime": "none",
+        "startTime": -4
+    }
+]
