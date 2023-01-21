@@ -20,6 +20,7 @@
             <div class="short">
                 <h3>🐋短期任务</h3>
                 <div class="items">
+                    <!-- 尝试插入一个骨架屏优化体验 -->
                     <!-- <div class="study" id="s327189">
                         <button></button>
                         <p>正则表达式学习</p>
@@ -53,7 +54,35 @@
             </div>
         </div>
     </div>
+    <div class="mask">
+        <div class="addAlert">
+            <h3>待办详情</h3>
+            <input type="text" id="creatEve" placeholder="请输入待办内容">
+            <div class="inputBox">
+                <span>时间跨度:</span>
+                <label for="shortTime">
+                    <input type="radio" value="s" id="shortTime" name="timeType" checked>
+                    &nbsp;&nbsp;短期</label>
+                <label for="longTime">
+                    <input type="radio" value="l" id="longTime" name="timeType">
+                    &nbsp;&nbsp;长期</label>
+            </div>
+            <div class="inputBox">
+                <span>待办类型:</span>
+                <label for="cStudy"><input type="radio" value="study" id="cStudy" name="type"
+                        checked>&nbsp;&nbsp;学习</label>
+                <label for="cWork"><input type="radio" value="work" id="cWork" name="type">&nbsp;&nbsp;工作</label>
+                <label for="cLife"><input type="radio" value="life" id="cLife" name="type">&nbsp;&nbsp;生活</label>
+            </div>
+            <div class="inputBox">
+                <span>截至日期:</span>
+                <input type="date" id="inputDate" value="2021-01-21">
+            </div>
+            <button id="detailSubmit">确定</button>
+        </div>
 
+    </div>
+    </div>
 
 </body>
 <script src="script.js"></script>

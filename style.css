@@ -12,7 +12,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
+    background: linear-gradient(157.04deg, rgba(192, 232, 250, 1) 0%, rgba(161, 196, 253, 1) 100%), rgba(246, 246, 246, 1);
 }
 
 .todoList {
@@ -77,6 +78,7 @@ body {
 
 .events .items {
     width: 90%;
+    min-height: 50px;
     border: 1px solid transparent;
     background-color: #fff;
     border-radius: 15px;
@@ -182,4 +184,87 @@ body {
 
 .items .finish button {
     background-color: #c3cfe2;
+}
+
+/* 遮罩层 */
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.mask .addAlert {
+    background-color: #fff;
+    width: 32%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mask .addAlert h3 {
+    color: #135ce0;
+    font-weight: 400;
+    font-size: 24px;
+    padding: 15px 0 20px 15px;
+}
+
+#creatEve {
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    /* display: block; */
+    align-self: center;
+    background: rgba(217, 232, 216, 1);
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    text-indent: 1em;
+    box-shadow: 0px 0px 5px 0px rgba(193, 217, 191, 1), 0px 0px 0px 10px rgba(245, 245, 245, 1);
+}
+
+.addAlert .inputBox {
+    margin-top: 1.5em;
+    padding-left: 1.5em;
+    width: 100%;
+}
+
+.addAlert .inputBox label {
+    margin-left: 1.5em;
+}
+
+#inputDate {
+    margin-left: 1.5em;
+    font-size: 16px;
+}
+
+.addAlert button {
+    width: 28%;
+    align-self: center;
+    border: none;
+    margin: 1em 0;
+    padding: .2em 0;
+    border-radius: 1em;
+    font-size: 18px;
+    background-color: #fff;
+    color: rgba(19, 92, 224, 1);
+    box-shadow: 0px 3px 7px 3px rgb(0 0 0 / 10%);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.addAlert button:hover {
+    transform: scale(1.1);
+}
+
+.addAlert button.subOk {
+    background-color: #b5f291;
+    color: #fff;
 }
