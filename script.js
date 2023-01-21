@@ -1,11 +1,19 @@
 var inputBox = document.querySelector('#userInput');
 // 加载本地存储数据
 var shortList = new Array();
+var ToDoList = new Array();
 
 // 用于展示本地数据库
 function loadAndShow() {
     shortList = JSON.parse(localStorage.getItem('ShortList'));
     console.log(shortList);
+}
+
+function getInputData() {
+    let timeType = $('input[name="timeType"]:checked').val();
+    let funType = $('input[name="type"]:checked').val();
+    let endTime = Date.parse($('#inputDate').val());
+
 }
 
 // 新增待办
@@ -30,11 +38,10 @@ function addElement(data) {
     <button></button>
     <p>${data.content}</p>
 </div>`;
-    // 在已完成的待办之前插入
     $(document).on('click', `#s${data.startTime} button`, delList);
-    let newFile = document.querySelector(`#s${data.startTime}`);
-    let oldFile = document.querySelector('.finish');
-    oldFile.parentNode.insertBefore(newFile, oldFile);
+    // let newFile = document.querySelector(`#s${data.startTime}`);
+    // let oldFile = document.querySelector('.finish');
+    // oldFile.parentNode.insertBefore(newFile, oldFile);
     // console.log(oldFile);
 }
 // 删除点击按钮对应的待办
@@ -65,7 +72,7 @@ function delList(e) {
     }
 }
 
-
+// 初始化页面
 function init() {
     console.log("init");
     // 初始化一个测试json
@@ -75,8 +82,10 @@ function init() {
             return response.json();
         })
         .then(data => {
-            // console.log(data);
-            localStorage.setItem('ShortList', JSON.stringify(data));
+            console.log(data);
+            // localStorage.setItem('ToDoList', JSON.stringify(data));
+            // ToDoList = data;
+            localStorage.setItem('shortList', JSON.stringify(data));
             shortList = data;
             draw();
         });
@@ -86,23 +95,14 @@ function init() {
     // localStorage.setItem('ShortList', JSON.stringify(jsonA));
     // shortList = jsonA;
 }
-/*
-本地存储一个名为"ShortList"的json数组,
-每次打开网页时,先加载本地数据.
-如果该数组为null,就进行初始化,然后更新这个json数组.
-随后通过js生成DOM元素加载网页.
-在增加操作时,将新的json存起来,然后调用addElem方法去新增DOM元素.
-*/
 
+// 绘制所有待办
 function draw() {
+    let items = document.querySelector('.items');
+    items.innerHTML = '';
     console.log("draw");
     for (let i = 0; i < shortList.length; i++) {
-        let items = document.querySelector('.items');
-        items.innerHTML += `<div class="${shortList[i].Class}" id="s${shortList[i].startTime}">
-        <button></button>
-        <p>${shortList[i].content}</p>
-    </div>`;
-        $(document).on('click', `#s${shortList[i].startTime} button`, delList);
+        addElement(shortList[i]);
     }
 }
 
@@ -112,24 +112,44 @@ $(function () {
     shortList = JSON.parse(localStorage.getItem('ShortList'))
     if (shortList == null) init();
     // draw();
-    // 给按钮绑定删除事件
-    $('.items>div>button').bind('click', delList);
 })
+
+function showAlert(tmpValue) {
+    $('#creatEve').val(tmpValue);
+    $('.mask').css("display", "flex");
+}
 
 inputBox.addEventListener('keydown', (e) => {
     let tmpValue = inputBox.value;
     if (e.key === 'Enter' && tmpValue != '') {
+        showAlert(tmpValue);
         // 清除数据库
-        if (tmpValue == 'clear') {
-            localStorage.clear();
-            shortList = new Array();
-            inputBox.value = 'Success!';
-        }
-        else if (tmpValue == 'show') {
-            loadAndShow();
-        } else {
-            addList(tmpValue);
-            inputBox.value = '';
-        }
+        // if (tmpValue == 'clear') {
+        //     localStorage.clear();
+        //     shortList = new Array();
+        //     inputBox.value = 'Clear Data Success!';
+        //     draw();
+        // }
+        // else if (tmpValue == 'show') {
+        //     loadAndShow();
+        // } else {
+        //     addList(tmpValue);
+        //     inputBox.value = '';
+        // }
     }
+})
+
+$('.mask').bind('click', (e) => {
+    let mask = document.querySelector('.mask');
+    e = e || window.event;
+    // 点击内容之外的mask就关闭遮罩
+    if (e && e.target == mask)
+        $('.mask').hide();
+})
+$('#detailSubmit').bind('click', () => {
+    $('#detailSubmit').text('Success').addClass('subOk');
+    getInputData();
+    setTimeout(() => {
+        $('.mask').hide();
+    }, 500)
 })
