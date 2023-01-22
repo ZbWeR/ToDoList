@@ -133,7 +133,7 @@ function init() {
     console.log("init");
     // 初始化一个测试json
     let jsonA = new Array();
-    fetch('./init.json')
+    fetch('../json/init.json')
         .then(response => {
             return response.json();
         })
@@ -176,7 +176,7 @@ $(function () {
     // 本地无数据就先初始化
     // localStorage.clear();
     ToDoList = JSON.parse(localStorage.getItem('ToDoList'));
-    fetch('./blank.json').then(response => response.json()).then(data => blankList = data);
+    fetch('../json/blank.json').then(response => response.json()).then(data => blankList = data);
     if (ToDoList == null) init();
     else draw(false);
 })
