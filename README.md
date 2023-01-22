@@ -11,5 +11,21 @@ Page访问地址: https://todolist-a1m.pages.dev/
 <strong>项目收获</strong>
 
 1. 遮罩层和页面内弹窗的样式设计.以及如何实现点击遮罩层关闭弹窗.
-2. Flex布局的熟练应用,font-family通用字体族的概念以及单行文本溢出省略的写法.
-3. json 数据的各种操作(阿巴阿巴阿巴) ; jQuery 一些方法的使用(有空再详细展开).
+2. `Flex`布局的熟练应用,`font-family`通用字体族的概念以及单行文本溢出省略的写法.
+3. `json` 数据的各种操作(阿巴阿巴阿巴) ; `jQuery` 一些方法的使用(有空再详细展开).
+
+<strong>目录架构</strong>
+
+```cpp
+.
+│   index.html      // 页面主体框架
+│   README.md       // 此文档
+│   style.css       // 页面所有样式
+│
+├───json            // 存放页面初始化的数据
+│
+├───script          // jQuery文件与页面所有脚本
+│
+└───全过程记录 
+
+```
