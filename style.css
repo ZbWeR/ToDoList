@@ -94,7 +94,8 @@ body {
     width: 90%;
     height: 48px;
     margin: 0 auto;
-    /* background-color: cadetblue; */
+    background-color: cadetblue;
+    border-radius: 24px;
     margin-bottom: 15px;
     position: relative;
     transition: all .3s;
@@ -122,28 +123,28 @@ body {
 
 .items div p {
     display: inline-block;
-    width: 100%;
+    width: 85%;
     line-height: 48px;
     padding-left: calc(4% + 30px);
     border-radius: 24px;
-    background-color: #fff;
     /* 单行溢出省略 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: default;
 }
 
-.items .study p {
+.items .study {
     background-color: #b5f291;
     box-shadow: 0px 2px 4px #a1d781;
 }
 
-.items .life p {
+.items .life {
     background-color: #FEF9D7;
     box-shadow: 0px 2px 4px #e2dec0;
 }
 
-.items .work p {
+.items .work {
     background-color: #d1eeff;
     box-shadow: 0px 2px 4px #b9d3e2;
 }
@@ -177,7 +178,7 @@ body {
     content: "";
 }
 
-.items .finish p {
+.items .finish {
     background-color: #dbdbdb;
     box-shadow: 0 2px 4px #dbdbdb;
 }
@@ -194,9 +195,18 @@ body {
     width: 100%;
     min-height: 100vh;
     display: flex;
+    opacity: 0;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, .8);
+    transition: all .5s;
+    z-index: -1;
+}
+
+.active {
+    opacity: 1;
+    z-index: 1;
+    transition: all .3s;
 }
 
 .mask .addAlert {
