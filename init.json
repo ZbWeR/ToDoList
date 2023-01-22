@@ -1,26 +1,60 @@
-[
-    {
-        "Class": "life",
-        "content": "欢迎来到ToDoList",
-        "endTime": "none",
-        "startTime": -1
-    },
-    {
-        "Class": "finish",
-        "content": "finished!",
-        "endTime": "none",
-        "startTime": -2
-    },
-    {
-        "Class": "study",
-        "content": "功能测试",
-        "endTime": "none",
-        "startTime": -3
-    },
-    {
-        "Class": "work",
-        "content": "hello!",
-        "endTime": "none",
-        "startTime": -4
-    }
-]
+{
+    "shortList": [
+        {
+            "Class": "life",
+            "content": "欢迎来到ToDoList",
+            "endTime": "none",
+            "startTime": -1
+        },
+        {
+            "Class": "life",
+            "content": "添加待办：输入框输入内容",
+            "endTime": "none",
+            "startTime": -2
+        },
+        {
+            "Class": "life",
+            "content": "删除待办：点击左侧小圆圈",
+            "endTime": "none",
+            "startTime": -3
+        },
+        {
+            "Class": "study",
+            "content": "待办类型：学习 / 生活 / 工作",
+            "endTime": "none",
+            "startTime": -4
+        },
+        {
+            "Class": "work",
+            "content": "不同类型显示的颜色不同",
+            "endTime": "none",
+            "startTime": -5
+        },
+        {
+            "Class": "work",
+            "content": "恢复待办：点击左侧圆圈",
+            "endTime": "none",
+            "startTime": -6
+        }
+    ],
+    "longList": [
+        {
+            "Class": "life",
+            "content": "更多操作：",
+            "endTime": "none",
+            "startTime": -7
+        },
+        {
+            "Class": "life",
+            "content": "clear All 清空本地数据库",
+            "endTime": "none",
+            "startTime": -8
+        },
+        {
+            "Class": "work",
+            "content": "Finish 删除已完成的待办",
+            "endTime": "none",
+            "startTime": -9
+        }
+    ]
+}
