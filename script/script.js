@@ -9,6 +9,7 @@ function loadAndShow() {
     console.log(ToDoList);
 }
 
+// 获得待办详情页面的数据
 function getInputData() {
     // 获得输入的数据
     let timeType = $('input[name="timeType"]:checked').val();
@@ -20,7 +21,6 @@ function getInputData() {
         for (let listName in ToDoList) {
             let key = eval("ToDoList." + listName);
             let tmpKey = key.filter(item => item.startTime != $('#detailSubmit').prop('class'));
-            // console.log(tmpKey);
             eval("tmpToDoList." + listName + "=tmpKey");
         }
         ToDoList = tmpToDoList;
@@ -172,6 +172,7 @@ function draw(isFinish) {
     }
 }
 
+// 页面加载完即运行
 $(function () {
     // 本地无数据就先初始化
     // localStorage.clear();
@@ -226,12 +227,12 @@ $('#creatEve').bind('keydown', (e) => {
 })
 
 // 遮罩层绑定关闭事件
-$('.mask').bind('click', (e) => {
+$('.mask').on('click', (e) => {
     let mask = document.querySelector('.mask');
-    e = e || window.event;
-    // 点击内容之外的mask就关闭遮罩
-    if (e && e.target == mask)
+    e = e || window.event;      // 实现各浏览器兼容
+    if (e && e.target == mask)  // 判断点击的是遮罩还是内容
         $('.mask').removeClass('active');
+    // target 返回最初发生事件的元素
 })
 // 遮罩弹窗页面的提交按钮
 $('#detailSubmit').bind('click', () => {

@@ -95,8 +95,83 @@
 >
 > 比如在json格式设置这方面,对于每一个待办最开始我是想让它拥有一个index,这样执行删除操作时比较方便,但是这个index的获取和处理在当时想起来又比较麻烦.又是就换了思路,管它什么时间复杂度,直接遍历数据库匹配去删除,这样对于每一个待办只需要有一个唯一标识id就行了,我最开始是想根据待办的内容去进行md5加密,然后以加密后的值为id,但是想想觉得没必要,直接利用加入待办的事件戳为id就好了,还能方便后面ddl功能的处理.
 
-1.21 : 早上在写文档,下午希望能完成弹窗页面的框架和样式,再补充js中LongList的部分.
+
+
+### 学习总结
+
+#### 1.遮罩层和页内弹窗的实现
+
+基本思路: 用`mask`盒子实现黑色遮罩层,在`mask`中再实现页内弹窗.初始时将遮罩层设为透明并且置底,后续再通过鼠标或键盘事件触发显示.遮罩层显示后，需要实现点击遮罩层关闭,但是点击内容时不关闭.
+
+HTML代码
+
+```html
+<div class="mask ">
+    <div class="addAlert">
+        业内弹窗代码部分
+    </div>
+</div>
+```
+
+CSS代码
+
+```css
+.mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    /* 以上用来保证遮罩层滚动时也能覆盖整个页面 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .8);
+    opacity: 0;
+    transition: all .5s;
+    /* 以上用来实现显示与消失的渐变效果 */
+    z-index: -1;
+	/* 置于页面底部以免妨碍其他操作	*/
+}
+.active {
+    opacity: 1;
+    transition: all .3s;
+    z-index: 1;
+    /* 置顶并设置为不透明 */
+}
+```
+
+JS核心代码: 给需要触发的地方添加如下语句即可.
+
+```js
+$('.mask').addClass('active'); // 显示
+$('.mask').removeClass('active'); // 隐藏
+```
+
+点击遮罩层关闭: 最初我是直接给`.mask`添加一个点击事件,点击后执行隐藏语句,但是由于**事件冒泡**的原因,在点击遮罩层中的内容部分时,也会将遮罩层关闭.解决方法有两种,一种是给遮罩内容部分即`addAlert`添加点击事件并阻止事件冒泡.第二种方法代码如下:
+
+```javascript
+$('.mask').bind('click', (e) => { // bind 用于绑定事件
+    let mask = document.querySelector('.mask');
+    e = e || window.event; 		// 实现各浏览器兼容
+    if (e && e.target == mask)  // 判断点击的是遮罩还是内容
+        $('.mask').removeClass('active');
+})
+```
+
+> target 属性获取最初发生事件的元素,而非冒泡后的最终事件.
+>
+> 在JQuery中有很多种绑定事件的方法,本项目代码中用到了bind和on两种方法，两者的异同可以参考[jquery on和bind的区别是什么](https://www.php.cn/js-tutorial-464730.html#:~:text=jquery,on和bind的区别：1、bind方法给每个子元素都添加一个事件，会影响到性能，而on方法不会；2、bind动态添加元素时，不能动态绑定事件，而on方法可以。 本教程操作环境：windows7系统、jquery1.10.2版，该方法适用于所有品牌电脑。): bind方法在选中的元素较多时会影响性能,并且不能动态绑定事件. on方法解决了bind的两个缺点,尽量使用on方法.
+
+#### 2.单选框相关
+
++ label 的 for 属性是对应 input标签的 id 属性.
++ 要实现单选效果,需要保证所有radio类型的**name**属性值相同.
++ 通过语句`$('input[name="type"]:checked').val()`可以获得用户到底选择了哪一个选项.
+
+#### 3.
 
 
 
-1. js 中遮罩层的实现：点击遮罩层非内容部分关闭(event.target),阻止事件冒泡(Event.stopPropagation)
+
+
