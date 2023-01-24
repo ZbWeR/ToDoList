@@ -32,7 +32,7 @@ Page访问地址: https://todolist-a1m.pages.dev/
 
 <strong>后期计划</strong>
 
-+ 增加网站logo和Title
++ ~~增加网站logo和Title~~
 + 增加待办详情页多行文本时自适应高度
 + 增加暗色模式转换
 + 增加移动端响应式布局
