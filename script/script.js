@@ -15,11 +15,14 @@ function getInputData() {
     let timeType = $('input[name="timeType"]:checked').val();
     let funType = $('input[name="type"]:checked').val();
     let content = $('#creatEve').val();
+    // 将Date.parse()年月日格式的数据转为时间戳
     let endTime = Date.parse($('#inputDate').val());
     if ($('#detailSubmit').prop('class')) {
         let tmpToDoList = {};
         for (let listName in ToDoList) {
             let key = eval("ToDoList." + listName);
+            // filter删除原有数据, prop('class')返回class属性的属性值
+            // prop带一个参数返回属性值,带两个参数设置属性值
             let tmpKey = key.filter(item => item.startTime != $('#detailSubmit').prop('class'));
             eval("tmpToDoList." + listName + "=tmpKey");
         }
@@ -27,7 +30,7 @@ function getInputData() {
         localStorage.setItem('ToDoList', JSON.stringify(ToDoList));
         draw(false);
     }
-    // 数据格式化为json
+    // 数据格式化为json： 反引号+eval
     let tmpStr = `{"Class":"${funType}" , "content":"${content}","endTime":${endTime},"startTime":${Date.now()}}`;
     let tmpjson = eval("(" + tmpStr + ")");
     addList(tmpjson, timeType);
@@ -47,7 +50,6 @@ function addList(inputValue, timeType) {
 
 //展示某个待办的详细信息
 function showDetail(id) {
-    // $(`#${id}`)
     let detailData = undefined;
     for (let listName in ToDoList) {
         let key = eval("ToDoList." + listName);
@@ -58,9 +60,8 @@ function showDetail(id) {
                     $(`input[value="${listName[0]}"]`).prop("checked", true);
                     $(`input[value="${key[i].Class}"]`).prop("checked", true);
                     $('#creatEve').val(key[i].content);
-                    // $('.mask').css("display", "flex");
                     $('.mask').addClass('active');
-                    return
+                    return;
                 }
     }
 }
@@ -77,6 +78,7 @@ function addElement(data, timeType) {
                             <button></button>
                             <p>${data.content}</p>
                             </div>`;
+    // 动态绑定事件,先解绑以免重复
     $(document).off('click', `#s${data.startTime} button`);
     $(document).on('click', `#s${data.startTime} button`, toggList);
     $(document).on('click', `#s${data.startTime}`, () => {
@@ -87,15 +89,14 @@ function addElement(data, timeType) {
 }
 // 删除点击按钮对应的待办
 function toggList(e) {
-    // 阻止事件冒泡
+    // 阻止事件冒泡,以免触发待办详情页面
     e.stopPropagation();
     // 在页面上切换finish状态
-    let delBox = e.target.parentElement;
-
-    let timeType = $(delBox).parent().parent().attr('class');
+    let delBox = e.target.parentElement; // 获得父亲节点
+    let timeType = $(delBox).parent().parent().attr('class'); // 判断是short还是long
     // 触发动画效果
     $(delBox).fadeOut(500);
-    e.target.disabled = true;
+    e.target.disabled = true; // 禁用按钮,防止多次点击
     setTimeout(() => {
         console.log(delBox);
         $(delBox).toggleClass('finish');
@@ -132,7 +133,6 @@ function toggList(e) {
 function init() {
     console.log("init");
     // 初始化一个测试json
-    let jsonA = new Array();
     fetch('../json/init.json')
         .then(response => {
             return response.json();
@@ -192,6 +192,7 @@ function showAlert(tmpValue) {
 // 输入框绑定事件
 inputBox.addEventListener('keydown', (e) => {
     let tmpValue = inputBox.value;
+    // .key 返回按键信息
     if (e.key === 'Enter' && tmpValue != '') {
         // 清除数据库
         if (tmpValue == 'clear All') {
@@ -214,7 +215,7 @@ inputBox.addEventListener('keydown', (e) => {
         else if (tmpValue == 'show') {
             loadAndShow();
         } else {
-            $('#detailSubmit').removeClass()
+            $('#detailSubmit').removeClass();
             showAlert(tmpValue);
             inputBox.value = '';
         }
@@ -222,7 +223,8 @@ inputBox.addEventListener('keydown', (e) => {
 })
 
 $('#creatEve').bind('keydown', (e) => {
-    if (e.which == 13)
+    console.log(e.key);
+    if (e.key == 'Enter')
         $('#detailSubmit').click();
 })
 

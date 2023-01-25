@@ -169,7 +169,79 @@ $('.mask').bind('click', (e) => { // bind 用于绑定事件
 + 要实现单选效果,需要保证所有radio类型的**name**属性值相同.
 + 通过语句`$('input[name="type"]:checked').val()`可以获得用户到底选择了哪一个选项.
 
-#### 3.
+#### 3. CSS相关
+
+单行文本溢出省略
+
+```css
+white-space: nowrap;	// 不换行
+overflow: hidden;		// 超出隐藏
+text-overflow: ellipsis;// 超出文本用省略号代替
+```
+
+利用flex的order属性实现已完成待办的沉底
+
+```css
+.items .finish {
+    text-decoration: line-through;	// 删除线
+    color: #9c9c9c;					// 颜色变灰
+    order: 100;						// order越大排在越后面
+}
+```
+
+#### 4. localStorage
+
+在web本地存储数据的场景上,HTML5给我们提供了两种工具: **localStorage**和**sessionStorage**.他们的异同如下:
+
+| 分类           | 声明周期                                               | 储存容量                   | 储存位置                                         |
+| -------------- | ------------------------------------------------------ | -------------------------- | ------------------------------------------------ |
+| localStorage   | 理论上是永久有效,除非主动清除                          | 4.98MB(不同浏览器情况不同) | 保存在客户端，不与服务器端进行交互.节省网络流量. |
+| sessionStorage | 仅在当前网页会话下有效,关闭页面或浏览器后会被自动清除. | 4.98MB(部分浏览器没有限制) | 同上                                             |
+
+由于本项目需要持久化缓存数据,在关闭页面再次打开也能有之前的数据,所以本项目中我选择了**localStorage**.值得注意的是,如果你的浏览器设置了关闭自动清除数据,那么**localStorage**中的数据也会被清除.
+
+**localStorage**具有以下方法:
+
+```javascript
+localStorage.setItem("name", "value");	// 添加数据: name:value 也可修改数据,名称重复则覆盖原有数据
+localStorage.getItem("name"); 			// 查询数据: => 'value'
+localStorage.removeItem("name");		// 删除指定数据
+localStorage.clear(); 					// 删除所有数据
+```
+
+其他操作：
+
+```javascript
+localStorage.setItem('ToDoList', JSON.stringify(ToDoList));		// 存放json类型的数据
+ToDoList = JSON.parse(localStorage.getItem('ToDoList'));		// 获取并解析json类型的数据
+```
+
+#### 5. json相关
+
+1. 动态拼接字符串并转化为json格式的数据
+
+```javascript
+// 采用反引号的引入变量来拼接字符串
+let tmpStr = `{"Class":"${funType}" , "content":"${content}","endTime":${endTime},"startTime":${Date.now()}}`;
+// 将字符串转为json格式
+let tmpjson = eval("(" + tmpStr + ")");
+```
+
+2. 读取外部json文件
+
+```javascript
+fetch('../json/init.json')
+    .then(response => {
+    	return response.json();
+	})
+    .then(data => {
+    	ToDoList = data;
+	});
+```
+
+需要注意的是上述方法在本地调试时需使用`liveServer`, 否则会发生CORS跨域错误.
+
+2. 遍历 json 数据的几种方法
 
 
 
