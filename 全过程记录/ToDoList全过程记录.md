@@ -241,7 +241,34 @@ fetch('../json/init.json')
 
 需要注意的是上述方法在本地调试时需使用`liveServer`, 否则会发生CORS跨域错误.
 
-2. 遍历 json 数据的几种方法
+3. json 数据的遍历(本质上就是对象的遍历)
+
+本项目中json数据格式如下:
+
+```json
+{
+    "shortList": [
+        {"Class": "life","content": "欢迎来到ToDoList","endTime": "none","startTime": -1},
+        {"Class": "life","content": "添加待办：输入框输入内容","endTime": "none","startTime": -2}
+    ],
+    "longList": [
+        {"Class": "life","content": "更多操作：","endTime": "none","startTime": -7},
+        {"Class": "life","content": "clear All 清空本地数据库","endTime": "none","startTime": -8}
+    ]
+}
+```
+
+采用的遍历方法如下:
+
+```js
+for (let listName in ToDoList) {
+    // listName 即 shortList 和 longList
+    // key 则为包含json的数组
+    let key = ToDoList[listName];	//此处用的是中括号语法
+    // let key = eval("ToDoList." + listName); // 此处用的是点语法,但是需要搭配eval使用.
+    let tmpKey = key.filter(item => item.Class != 'finish');
+}
+```
 
 
 

@@ -156,7 +156,8 @@ function draw(isFinish) {
     if (isFinish) {
         let tmpToDoList = {};
         for (let listName in ToDoList) {
-            let key = eval("ToDoList." + listName);
+            // let key = eval("ToDoList." + listName);
+            let key = ToDoList[listName];
             let tmpKey = key.filter(item => item.Class != 'finish');
             eval("tmpToDoList." + listName + "=tmpKey");
         }
