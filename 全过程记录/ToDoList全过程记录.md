@@ -270,7 +270,50 @@ for (let listName in ToDoList) {
 }
 ```
 
+#### 其他小技巧
 
++ jQuery获得/设置元素的属性值: 1.`attr()`2.`prop()`
 
+```js
+// 1. attr()
+$('img').attr('src'); 						// 返回img标签的src属性值
+$('img').attr('src','test.jpg');			// 设置属性值
+// 2. prop()
+$('#detailSubmit').prop('class'); 			// 返回对应元素class的属性值
+$('#detailSubmit').prop('class'，'active'); // 设置对应元素class的属性值
+// 一个参数返回属性值,两个参数设置属性值
+```
 
+**两者的区别**：
 
+attr 是从页面搜索获得元素值，所以页面必须**明确定义元素**才能获取值，相对来说比较慢。而 prop 是从属性对象中取值，属性对象中有多少属性，就能获取多少值，不需要在页面中显示定义。例如:
+
+```html
+<input name="test" type="checkbox">
+```
+
+在该行语句中,我们没有声明`checked`属性的值,但我们知道它的默认值为`false`即未被选中.
+
+```js
+$('input:checkbox').attr('checked');	// 返回undefined , 因为checked属性在HTML标签中并未声明
+$('input:checkbox').prop('checked');	// 返回false
+```
+
+其次, attr 获取的是初始化值，除非通过`attr(‘name’,’value’)`改变，否则值不变而 prop 属性值是动态的.
+
+总结:
+
+1. 对于HTML元素本身就带有的固有属性，在处理时，使用prop方法.
+
+2. 对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法.s
+
+参考文档:
+
+1. [js中的prop方法和attr方法的区别_麻衣Protector的博客-CSDN博客_js中的prop是什么](https://blog.csdn.net/qq_43656119/article/details/90045402?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-90045402-blog-106299731.pc_relevant_3mothn_strategy_and_data_recovery&spm=1001.2101.3001.4242.2&utm_relevant_index=4)
+2. [prop(n|p|k,v|f) | jQuery API 3.2 中文文档 | jQuery API 在线手册 (cuishifeng.cn)](https://jquery.cuishifeng.cn/prop.html)
+
++ 阻止事件冒泡: `e.stopPropagation();`
+
+参考资料:[JavaScript阻止事件冒泡的两种方式（兼容性解决方案） - 掘金 (juejin.cn)](https://juejin.cn/post/7069356019121389598)
+
++ 
