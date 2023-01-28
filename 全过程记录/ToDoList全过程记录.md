@@ -305,7 +305,7 @@ $('input:checkbox').prop('checked');	// 返回false
 
 1. 对于HTML元素本身就带有的固有属性，在处理时，使用prop方法.
 
-2. 对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法.s
+2. 对于HTML元素我们自己自定义的DOM属性，在处理时，使用attr方法.
 
 参考文档:
 
@@ -316,4 +316,11 @@ $('input:checkbox').prop('checked');	// 返回false
 
 参考资料:[JavaScript阻止事件冒泡的两种方式（兼容性解决方案） - 掘金 (juejin.cn)](https://juejin.cn/post/7069356019121389598)
 
-+ 
++ JQuery一些有趣的方法
+
+```js
+$('div').fadeIn(ms) 	// 淡入,属性值为ms
+$('div').fadeOut(ms) 	// 淡出 
+$('div').toggleClass('')// 切换类名,有删无增
+```
+
